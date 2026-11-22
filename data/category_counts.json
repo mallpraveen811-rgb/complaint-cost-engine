@@ -1,0 +1,76 @@
+{
+ "rows": [
+  {
+   "ai_category": "Positive feedback",
+   "reviews": 745,
+   "share_pct": 62.3
+  },
+  {
+   "ai_category": "Not delivered",
+   "reviews": 89,
+   "share_pct": 7.4
+  },
+  {
+   "ai_category": "Missing items / parts",
+   "reviews": 72,
+   "share_pct": 6.0
+  },
+  {
+   "ai_category": "Late delivery",
+   "reviews": 66,
+   "share_pct": 5.5
+  },
+  {
+   "ai_category": "Damaged / defective",
+   "reviews": 38,
+   "share_pct": 3.2
+  },
+  {
+   "ai_category": "Other",
+   "reviews": 37,
+   "share_pct": 3.1
+  },
+  {
+   "ai_category": "Not as described",
+   "reviews": 36,
+   "share_pct": 3.0
+  },
+  {
+   "ai_category": "Wrong item",
+   "reviews": 34,
+   "share_pct": 2.8
+  },
+  {
+   "ai_category": "Poor quality",
+   "reviews": 33,
+   "share_pct": 2.8
+  },
+  {
+   "ai_category": "Seller unresponsive",
+   "reviews": 18,
+   "share_pct": 1.5
+  },
+  {
+   "ai_category": "Refund / return issue",
+   "reviews": 16,
+   "share_pct": 1.3
+  },
+  {
+   "ai_category": "Price / freight value",
+   "reviews": 12,
+   "share_pct": 1.0
+  }
+ ],
+ "meta": [
+  {
+   "label": "SQL (PostgreSQL 16, database complaint_cost)",
+   "value": "SELECT cc.display_name AS ai_category, count(*) AS reviews, round(100.0*count(*)/sum(count(*)) OVER (),1) AS share_pct\nFROM ai.review_insights t JOIN ai.complaint_categories cc ON cc.category = t.primary_category\nGROUP BY 1 ORDER BY 2 DESC",
+   "type": "code",
+   "lang": "sql"
+  },
+  {
+   "label": "Input",
+   "value": "Olist Brazilian E-Commerce dataset (Kaggle), 9 CSV files"
+  }
+ ]
+}

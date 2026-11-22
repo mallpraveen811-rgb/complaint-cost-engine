@@ -1,0 +1,156 @@
+{
+ "rows": [
+  {
+   "display_name": "Not delivered",
+   "owner_team": "Logistics",
+   "complaints": 89,
+   "share_of_complaints_pct": 21.4,
+   "exposed_revenue": 14143.63,
+   "revenue_at_risk": 11486.57,
+   "est_revenue_at_risk": 390221.76,
+   "avg_review_score": 1.33,
+   "wont_buy_again_pct": 5.6,
+   "high_severity_pct": 80.9,
+   "late_pct": 66.7,
+   "fix_priority_rank": 1
+  },
+  {
+   "display_name": "Missing items / parts",
+   "owner_team": "Seller fulfilment",
+   "complaints": 73,
+   "share_of_complaints_pct": 17.5,
+   "exposed_revenue": 17124.35,
+   "revenue_at_risk": 10139.28,
+   "est_revenue_at_risk": 344451.62,
+   "avg_review_score": 2.0,
+   "wont_buy_again_pct": 2.7,
+   "high_severity_pct": 50.7,
+   "late_pct": 2.8,
+   "fix_priority_rank": 2
+  },
+  {
+   "display_name": "Late delivery",
+   "owner_team": "Logistics",
+   "complaints": 66,
+   "share_of_complaints_pct": 15.9,
+   "exposed_revenue": 13814.83,
+   "revenue_at_risk": 8219.72,
+   "est_revenue_at_risk": 279240.33,
+   "avg_review_score": 2.15,
+   "wont_buy_again_pct": 0.0,
+   "high_severity_pct": 42.4,
+   "late_pct": 57.4,
+   "fix_priority_rank": 3
+  },
+  {
+   "display_name": "Damaged / defective",
+   "owner_team": "Seller packaging",
+   "complaints": 39,
+   "share_of_complaints_pct": 9.4,
+   "exposed_revenue": 10335.98,
+   "revenue_at_risk": 5510.87,
+   "est_revenue_at_risk": 187215.28,
+   "avg_review_score": 2.36,
+   "wont_buy_again_pct": 2.6,
+   "high_severity_pct": 46.2,
+   "late_pct": 2.6,
+   "fix_priority_rank": 4
+  },
+  {
+   "display_name": "Wrong item",
+   "owner_team": "Seller fulfilment",
+   "complaints": 34,
+   "share_of_complaints_pct": 8.2,
+   "exposed_revenue": 6479.18,
+   "revenue_at_risk": 5459.07,
+   "est_revenue_at_risk": 185455.53,
+   "avg_review_score": 1.47,
+   "wont_buy_again_pct": 5.9,
+   "high_severity_pct": 76.5,
+   "late_pct": 2.9,
+   "fix_priority_rank": 5
+  },
+  {
+   "display_name": "Not as described",
+   "owner_team": "Catalogue",
+   "complaints": 36,
+   "share_of_complaints_pct": 8.7,
+   "exposed_revenue": 5757.62,
+   "revenue_at_risk": 2008.89,
+   "est_revenue_at_risk": 68246.01,
+   "avg_review_score": 2.36,
+   "wont_buy_again_pct": 5.6,
+   "high_severity_pct": 27.8,
+   "late_pct": 8.3,
+   "fix_priority_rank": 6
+  },
+  {
+   "display_name": "Refund / return issue",
+   "owner_team": "Customer service",
+   "complaints": 16,
+   "share_of_complaints_pct": 3.8,
+   "exposed_revenue": 1453.41,
+   "revenue_at_risk": 1215.09,
+   "est_revenue_at_risk": 41279.04,
+   "avg_review_score": 1.13,
+   "wont_buy_again_pct": 0.0,
+   "high_severity_pct": 81.3,
+   "late_pct": 30.0,
+   "fix_priority_rank": 7
+  },
+  {
+   "display_name": "Poor quality",
+   "owner_team": "Category / sourcing",
+   "complaints": 33,
+   "share_of_complaints_pct": 7.9,
+   "exposed_revenue": 4297.55,
+   "revenue_at_risk": 843.69,
+   "est_revenue_at_risk": 28661.84,
+   "avg_review_score": 2.61,
+   "wont_buy_again_pct": 3.0,
+   "high_severity_pct": 21.2,
+   "late_pct": 0.0,
+   "fix_priority_rank": 8
+  },
+  {
+   "display_name": "Seller unresponsive",
+   "owner_team": "Seller support",
+   "complaints": 18,
+   "share_of_complaints_pct": 4.3,
+   "exposed_revenue": 3309.45,
+   "revenue_at_risk": 180.55,
+   "est_revenue_at_risk": 6133.64,
+   "avg_review_score": 1.72,
+   "wont_buy_again_pct": 5.6,
+   "high_severity_pct": 22.2,
+   "late_pct": 30.0,
+   "fix_priority_rank": 9
+  },
+  {
+   "display_name": "Price / freight value",
+   "owner_team": "Pricing",
+   "complaints": 12,
+   "share_of_complaints_pct": 2.9,
+   "exposed_revenue": 2958.78,
+   "revenue_at_risk": 50.9,
+   "est_revenue_at_risk": 1729.17,
+   "avg_review_score": 3.83,
+   "wont_buy_again_pct": 8.3,
+   "high_severity_pct": 0.0,
+   "late_pct": 0.0,
+   "fix_priority_rank": 10
+  }
+ ],
+ "meta": [
+  {
+   "label": "SQL (PostgreSQL 16, database complaint_cost)",
+   "value": "SELECT i.display_name, i.owner_team, i.complaints, i.share_of_complaints_pct, i.exposed_revenue,\n       i.revenue_at_risk, i.est_revenue_at_risk_full_data AS est_revenue_at_risk, i.avg_review_score,\n       i.wont_buy_again_pct, i.high_severity_pct, i.late_pct, i.fix_priority_rank\nFROM mart.complaint_category_impact i ORDER BY i.fix_priority_rank",
+   "type": "code",
+   "lang": "sql"
+  },
+  {
+   "label": "Input",
+   "value": "Olist Brazilian E-Commerce dataset (Kaggle), 9 CSV files"
+  }
+ ]
+}

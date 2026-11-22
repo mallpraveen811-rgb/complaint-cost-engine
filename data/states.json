@@ -1,0 +1,259 @@
+{
+ "rows": [
+  {
+   "state": "AL",
+   "state_name": "Alagoas",
+   "region": "Northeast",
+   "orders": 412,
+   "avg_delivery_days": 24.5,
+   "late_pct": 21.4,
+   "avg_review_score": 3.76
+  },
+  {
+   "state": "MA",
+   "state_name": "Maranhão",
+   "region": "Northeast",
+   "orders": 744,
+   "avg_delivery_days": 21.6,
+   "late_pct": 17.4,
+   "avg_review_score": 3.76
+  },
+  {
+   "state": "SE",
+   "state_name": "Sergipe",
+   "region": "Northeast",
+   "orders": 353,
+   "avg_delivery_days": 21.4,
+   "late_pct": 15.1,
+   "avg_review_score": 3.81
+  },
+  {
+   "state": "PI",
+   "state_name": "Piauí",
+   "region": "Northeast",
+   "orders": 495,
+   "avg_delivery_days": 19.5,
+   "late_pct": 13.9,
+   "avg_review_score": 3.92
+  },
+  {
+   "state": "CE",
+   "state_name": "Ceará",
+   "region": "Northeast",
+   "orders": 1336,
+   "avg_delivery_days": 21.3,
+   "late_pct": 13.8,
+   "avg_review_score": 3.86
+  },
+  {
+   "state": "BA",
+   "state_name": "Bahia",
+   "region": "Northeast",
+   "orders": 3378,
+   "avg_delivery_days": 19.3,
+   "late_pct": 12.2,
+   "avg_review_score": 3.86
+  },
+  {
+   "state": "RR",
+   "state_name": "Roraima",
+   "region": "North",
+   "orders": 46,
+   "avg_delivery_days": 29.4,
+   "late_pct": 12.2,
+   "avg_review_score": 3.61
+  },
+  {
+   "state": "RJ",
+   "state_name": "Rio de Janeiro",
+   "region": "Southeast",
+   "orders": 12852,
+   "avg_delivery_days": 15.3,
+   "late_pct": 12.1,
+   "avg_review_score": 3.88
+  },
+  {
+   "state": "PA",
+   "state_name": "Pará",
+   "region": "North",
+   "orders": 975,
+   "avg_delivery_days": 23.8,
+   "late_pct": 11.2,
+   "avg_review_score": 3.85
+  },
+  {
+   "state": "ES",
+   "state_name": "Espírito Santo",
+   "region": "Southeast",
+   "orders": 2032,
+   "avg_delivery_days": 15.8,
+   "late_pct": 10.7,
+   "avg_review_score": 4.04
+  },
+  {
+   "state": "PB",
+   "state_name": "Paraíba",
+   "region": "Northeast",
+   "orders": 536,
+   "avg_delivery_days": 20.4,
+   "late_pct": 10.3,
+   "avg_review_score": 4.02
+  },
+  {
+   "state": "TO",
+   "state_name": "Tocantins",
+   "region": "North",
+   "orders": 280,
+   "avg_delivery_days": 17.7,
+   "late_pct": 9.9,
+   "avg_review_score": 4.1
+  },
+  {
+   "state": "MS",
+   "state_name": "Mato Grosso do Sul",
+   "region": "Center-West",
+   "orders": 714,
+   "avg_delivery_days": 15.6,
+   "late_pct": 9.7,
+   "avg_review_score": 4.11
+  },
+  {
+   "state": "PE",
+   "state_name": "Pernambuco",
+   "region": "Northeast",
+   "orders": 1653,
+   "avg_delivery_days": 18.4,
+   "late_pct": 9.6,
+   "avg_review_score": 4.01
+  },
+  {
+   "state": "RN",
+   "state_name": "Rio Grande do Norte",
+   "region": "Northeast",
+   "orders": 485,
+   "avg_delivery_days": 19.3,
+   "late_pct": 9.3,
+   "avg_review_score": 4.11
+  },
+  {
+   "state": "SC",
+   "state_name": "Santa Catarina",
+   "region": "South",
+   "orders": 3637,
+   "avg_delivery_days": 15.0,
+   "late_pct": 8.2,
+   "avg_review_score": 4.07
+  },
+  {
+   "state": "GO",
+   "state_name": "Goiás",
+   "region": "Center-West",
+   "orders": 2023,
+   "avg_delivery_days": 15.6,
+   "late_pct": 6.5,
+   "avg_review_score": 4.05
+  },
+  {
+   "state": "MT",
+   "state_name": "Mato Grosso",
+   "region": "Center-West",
+   "orders": 909,
+   "avg_delivery_days": 18.1,
+   "late_pct": 6.2,
+   "avg_review_score": 4.1
+  },
+  {
+   "state": "RS",
+   "state_name": "Rio Grande do Sul",
+   "region": "South",
+   "orders": 5468,
+   "avg_delivery_days": 15.3,
+   "late_pct": 6.1,
+   "avg_review_score": 4.13
+  },
+  {
+   "state": "DF",
+   "state_name": "Distrito Federal",
+   "region": "Center-West",
+   "orders": 2139,
+   "avg_delivery_days": 13.0,
+   "late_pct": 5.6,
+   "avg_review_score": 4.06
+  },
+  {
+   "state": "MG",
+   "state_name": "Minas Gerais",
+   "region": "Southeast",
+   "orders": 11635,
+   "avg_delivery_days": 12.0,
+   "late_pct": 4.6,
+   "avg_review_score": 4.14
+  },
+  {
+   "state": "SP",
+   "state_name": "São Paulo",
+   "region": "Southeast",
+   "orders": 41747,
+   "avg_delivery_days": 8.8,
+   "late_pct": 4.5,
+   "avg_review_score": 4.17
+  },
+  {
+   "state": "PR",
+   "state_name": "Paraná",
+   "region": "South",
+   "orders": 5043,
+   "avg_delivery_days": 12.0,
+   "late_pct": 4.0,
+   "avg_review_score": 4.18
+  },
+  {
+   "state": "AC",
+   "state_name": "Acre",
+   "region": "North",
+   "orders": 81,
+   "avg_delivery_days": 21.0,
+   "late_pct": 3.8,
+   "avg_review_score": 4.05
+  },
+  {
+   "state": "AP",
+   "state_name": "Amapá",
+   "region": "North",
+   "orders": 68,
+   "avg_delivery_days": 27.2,
+   "late_pct": 3.0,
+   "avg_review_score": 4.19
+  },
+  {
+   "state": "RO",
+   "state_name": "Rondônia",
+   "region": "North",
+   "orders": 252,
+   "avg_delivery_days": 19.4,
+   "late_pct": 2.9,
+   "avg_review_score": 4.05
+  },
+  {
+   "state": "AM",
+   "state_name": "Amazonas",
+   "region": "North",
+   "orders": 148,
+   "avg_delivery_days": 26.4,
+   "late_pct": 2.8,
+   "avg_review_score": 4.21
+  }
+ ],
+ "meta": [
+  {
+   "label": "SQL (PostgreSQL 16, database complaint_cost)",
+   "value": "SELECT s.customer_state AS state, st.state_name, st.region, s.orders, s.avg_delivery_days, s.late_pct, s.avg_review_score\nFROM mart.state_summary s JOIN dw.dim_state st ON st.state = s.customer_state\nORDER BY s.late_pct DESC",
+   "type": "code",
+   "lang": "sql"
+  },
+  {
+   "label": "Input",
+   "value": "Olist Brazilian E-Commerce dataset (Kaggle), 9 CSV files"
+  }
+ ]
+}
