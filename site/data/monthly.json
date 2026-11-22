@@ -1,0 +1,176 @@
+{
+ "rows": [
+  {
+   "month": "2017-01-01",
+   "orders": 800,
+   "revenue_brl": 137188,
+   "late_pct": 2.9,
+   "avg_review_score": 4.06,
+   "bad_review_pct": 15.6
+  },
+  {
+   "month": "2017-02-01",
+   "orders": 1780,
+   "revenue_brl": 286281,
+   "late_pct": 3.0,
+   "avg_review_score": 4.02,
+   "bad_review_pct": 16.2
+  },
+  {
+   "month": "2017-03-01",
+   "orders": 2682,
+   "revenue_brl": 432049,
+   "late_pct": 4.6,
+   "avg_review_score": 4.07,
+   "bad_review_pct": 14.2
+  },
+  {
+   "month": "2017-04-01",
+   "orders": 2404,
+   "revenue_brl": 412422,
+   "late_pct": 6.6,
+   "avg_review_score": 4.04,
+   "bad_review_pct": 15.5
+  },
+  {
+   "month": "2017-05-01",
+   "orders": 3700,
+   "revenue_brl": 586191,
+   "late_pct": 3.0,
+   "avg_review_score": 4.14,
+   "bad_review_pct": 12.8
+  },
+  {
+   "month": "2017-06-01",
+   "orders": 3245,
+   "revenue_brl": 502963,
+   "late_pct": 3.0,
+   "avg_review_score": 4.15,
+   "bad_review_pct": 12.7
+  },
+  {
+   "month": "2017-07-01",
+   "orders": 4026,
+   "revenue_brl": 584972,
+   "late_pct": 2.8,
+   "avg_review_score": 4.18,
+   "bad_review_pct": 12.2
+  },
+  {
+   "month": "2017-08-01",
+   "orders": 4331,
+   "revenue_brl": 668205,
+   "late_pct": 2.9,
+   "avg_review_score": 4.24,
+   "bad_review_pct": 11.4
+  },
+  {
+   "month": "2017-09-01",
+   "orders": 4285,
+   "revenue_brl": 720399,
+   "late_pct": 4.4,
+   "avg_review_score": 4.19,
+   "bad_review_pct": 12.4
+  },
+  {
+   "month": "2017-10-01",
+   "orders": 4631,
+   "revenue_brl": 769312,
+   "late_pct": 4.2,
+   "avg_review_score": 4.12,
+   "bad_review_pct": 13.2
+  },
+  {
+   "month": "2017-11-01",
+   "orders": 7544,
+   "revenue_brl": 1179144,
+   "late_pct": 12.4,
+   "avg_review_score": 3.91,
+   "bad_review_pct": 18.8
+  },
+  {
+   "month": "2017-12-01",
+   "orders": 5673,
+   "revenue_brl": 863547,
+   "late_pct": 7.5,
+   "avg_review_score": 4.02,
+   "bad_review_pct": 16.4
+  },
+  {
+   "month": "2018-01-01",
+   "orders": 7269,
+   "revenue_brl": 1107302,
+   "late_pct": 5.7,
+   "avg_review_score": 4.04,
+   "bad_review_pct": 15.5
+  },
+  {
+   "month": "2018-02-01",
+   "orders": 6728,
+   "revenue_brl": 986909,
+   "late_pct": 14.1,
+   "avg_review_score": 3.83,
+   "bad_review_pct": 20.9
+  },
+  {
+   "month": "2018-03-01",
+   "orders": 7211,
+   "revenue_brl": 1155127,
+   "late_pct": 19.0,
+   "avg_review_score": 3.75,
+   "bad_review_pct": 22.8
+  },
+  {
+   "month": "2018-04-01",
+   "orders": 6939,
+   "revenue_brl": 1159698,
+   "late_pct": 4.5,
+   "avg_review_score": 4.16,
+   "bad_review_pct": 13.0
+  },
+  {
+   "month": "2018-05-01",
+   "orders": 6873,
+   "revenue_brl": 1149782,
+   "late_pct": 6.6,
+   "avg_review_score": 4.19,
+   "bad_review_pct": 11.9
+  },
+  {
+   "month": "2018-06-01",
+   "orders": 6167,
+   "revenue_brl": 1022677,
+   "late_pct": 1.2,
+   "avg_review_score": 4.28,
+   "bad_review_pct": 10.8
+  },
+  {
+   "month": "2018-07-01",
+   "orders": 6292,
+   "revenue_brl": 1058728,
+   "late_pct": 3.4,
+   "avg_review_score": 4.26,
+   "bad_review_pct": 11.1
+  },
+  {
+   "month": "2018-08-01",
+   "orders": 6512,
+   "revenue_brl": 1003308,
+   "late_pct": 6.2,
+   "avg_review_score": 4.26,
+   "bad_review_pct": 10.9
+  }
+ ],
+ "meta": [
+  {
+   "label": "SQL (PostgreSQL 16, database complaint_cost)",
+   "value": "SELECT order_month::text AS month, orders, round(revenue) AS revenue_brl, late_pct, avg_review_score, bad_review_pct\nFROM mart.kpi_monthly\nWHERE order_month BETWEEN '2017-01-01' AND '2018-08-01' ORDER BY order_month",
+   "type": "code",
+   "lang": "sql"
+  },
+  {
+   "label": "Input",
+   "value": "Olist Brazilian E-Commerce dataset (Kaggle), 9 CSV files"
+  }
+ ]
+}

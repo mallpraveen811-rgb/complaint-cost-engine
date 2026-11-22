@@ -1,7 +1,7 @@
 # Complaint Cost Engine
 *by Aarsh Mall*
 
-**Live dashboard:** https://claude.ai/artifact/8Aigg5dmh2LewG3iXuuijX  
+**Live dashboard:** https://mallpraveen811-rgb.github.io/complaint-cost-engine/  
 **Full report:** [docs/Complaint_Cost_Engine_Report.pdf](docs/Complaint_Cost_Engine_Report.pdf)
 
 ### Which customer problems cost an e-commerce business the most money?

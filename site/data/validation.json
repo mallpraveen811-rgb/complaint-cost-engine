@@ -1,0 +1,36 @@
+{
+ "rows": [
+  {
+   "ai_tag": "Reviews the AI tagged \"Late delivery\"",
+   "reviews": 66,
+   "actually_late_or_undelivered_pct": 60.6
+  },
+  {
+   "ai_tag": "Reviews the AI tagged \"Not delivered\"",
+   "reviews": 89,
+   "actually_late_or_undelivered_pct": 77.5
+  },
+  {
+   "ai_tag": "Reviews the AI tagged \"Positive feedback\"",
+   "reviews": 747,
+   "actually_late_or_undelivered_pct": 2.7
+  },
+  {
+   "ai_tag": "All orders (baseline)",
+   "reviews": 98207,
+   "actually_late_or_undelivered_pct": 8.4
+  }
+ ],
+ "meta": [
+  {
+   "label": "SQL (PostgreSQL 16, database complaint_cost)",
+   "value": "WITH t AS (\n  SELECT ti.primary_category, coalesce(f.is_late, true) AS late_or_missing\n  FROM dw.fact_orders f JOIN ai.review_insights ti ON ti.review_id = f.review_id)\nSELECT 'Reviews the AI tagged \"Late delivery\"' AS ai_tag, count(*) AS reviews,\n       round(100.0*avg(late_or_missing::int),1) AS actually_late_or_undelivered_pct FROM t WHERE primary_category='late_delivery'\nUNION ALL SELECT 'Reviews the AI tagged \"Not delivered\"', count(*), round(100.0*avg(late_or_missing::int),1) FROM t WHERE primary_category='not_delivered'\nUNION ALL SELECT 'Reviews the AI tagged \"Positive feedback\"', count(*), round(100.0*avg(late_or_missing::int),1) FROM t WHERE primary_category='positive_feedback'\nUNION ALL SELECT 'All orders (baseline)', count(*), round(100.0*avg(coalesce(is_late,true)::int),1) FROM dw.fact_orders WHERE order_status NOT IN ('canceled','unavailable')",
+   "type": "code",
+   "lang": "sql"
+  },
+  {
+   "label": "Input",
+   "value": "Olist Brazilian E-Commerce dataset (Kaggle), 9 CSV files"
+  }
+ ]
+}
