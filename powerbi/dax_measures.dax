@@ -1,0 +1,118 @@
+// =====================================================================
+// dax_measures.dax  |  All DAX measures for the report
+// How to add: Modeling tab -> New measure -> paste ONE measure (name = formula).
+// Tip: first create an empty table "_Measures" (Home -> Enter data -> Load) and
+// put every measure in it, so they are all in one place.
+// Table names below assume you renamed the imported views (see the build guide):
+//   pbi fact_orders -> Orders, pbi dim_date -> Date, pbi exec_summary -> Exec Summary,
+//   pbi tagging_coverage -> Tagging Coverage, pbi model_quality -> Model Quality
+// =====================================================================
+
+// ---------- core business KPIs ----------
+Total Revenue = SUM ( Orders[order_value] )
+
+Order Count = COUNTROWS ( Orders )
+
+Avg Order Value = DIVIDE ( [Total Revenue], [Order Count] )
+
+Avg Review Score = AVERAGE ( Orders[review_score] )
+
+Avg Delivery Days = AVERAGE ( Orders[delivery_days] )
+
+Late % =
+DIVIDE (
+    CALCULATE ( COUNTROWS ( Orders ), Orders[is_late] = TRUE () ),
+    CALCULATE ( COUNTROWS ( Orders ), NOT ISBLANK ( Orders[is_late] ) )
+)
+
+Bad Review % =
+DIVIDE (
+    CALCULATE ( COUNTROWS ( Orders ), Orders[review_score] <= 2 ),
+    CALCULATE ( COUNTROWS ( Orders ), NOT ISBLANK ( Orders[review_score] ) )
+)
+
+// ---------- complaint KPIs (from the LLM tags) ----------
+Tagged Reviews = CALCULATE ( COUNTROWS ( Orders ), Orders[is_tagged] = TRUE () )
+
+Complaints = CALCULATE ( COUNTROWS ( Orders ), Orders[is_complaint] = TRUE () )
+
+Complaint Share % = DIVIDE ( [Complaints], [Tagged Reviews] )
+
+Exposed Revenue = CALCULATE ( [Total Revenue], Orders[is_complaint] = TRUE () )
+
+Revenue at Risk = CALCULATE ( [Total Revenue], Orders[is_at_risk] = TRUE () )
+
+Revenue at Risk % = DIVIDE ( [Revenue at Risk], [Total Revenue] )
+
+Coverage Factor = MAX ( 'Tagging Coverage'[coverage_factor] )
+
+// scales the sample up to all written reviews (explain this on the page!)
+Est Revenue at Risk (All Reviews) = [Revenue at Risk] * [Coverage Factor]
+
+Wont Buy Again % =
+DIVIDE (
+    CALCULATE ( COUNTROWS ( Orders ), Orders[wont_buy_again] = TRUE (), Orders[is_complaint] = TRUE () ),
+    [Complaints]
+)
+
+High Severity % =
+DIVIDE (
+    CALCULATE ( COUNTROWS ( Orders ), Orders[severity] = "high", Orders[is_complaint] = TRUE () ),
+    [Complaints]
+)
+
+// ---------- time intelligence (needs Date marked as date table) ----------
+Revenue PM = CALCULATE ( [Total Revenue], DATEADD ( 'Date'[date_key], -1, MONTH ) )
+
+Revenue MoM % = DIVIDE ( [Total Revenue] - [Revenue PM], [Revenue PM] )
+
+Complaints PM = CALCULATE ( [Complaints], DATEADD ( 'Date'[date_key], -1, MONTH ) )
+
+Complaints MoM Change = [Complaints] - [Complaints PM]
+
+Revenue at Risk PM = CALCULATE ( [Revenue at Risk], DATEADD ( 'Date'[date_key], -1, MONTH ) )
+
+// ---------- ranking + dynamic text ----------
+Fix Priority Rank =
+IF (
+    ISBLANK ( [Revenue at Risk] ), BLANK (),
+    RANKX ( ALLSELECTED ( 'Complaint Category'[display_name] ), [Revenue at Risk], , DESC, DENSE )
+)
+
+Top Complaint (by Revenue at Risk) =
+VAR t =
+    TOPN ( 1,
+        FILTER ( VALUES ( 'Complaint Category'[display_name] ), NOT ISBLANK ( [Revenue at Risk] ) ),
+        [Revenue at Risk], DESC )
+RETURN CONCATENATEX ( t, 'Complaint Category'[display_name], ", " )
+
+Page Title Complaints =
+"Biggest money problem: " & [Top Complaint (by Revenue at Risk)]
+    & "  (R$ " & FORMAT ( [Revenue at Risk], "#,0" ) & " at risk)"
+
+// ---------- AI executive summary (shown in Card / Text visuals) ----------
+AI Headline =
+CALCULATE ( MAX ( 'Exec Summary'[headline] ), 'Exec Summary'[is_latest] = TRUE () )
+
+AI Summary =
+CALCULATE ( MAX ( 'Exec Summary'[summary] ), 'Exec Summary'[is_latest] = TRUE () )
+
+AI Actions =
+CALCULATE (
+    "1. " & MAX ( 'Exec Summary'[action_1] ) & UNICHAR ( 10 )
+  & "2. " & MAX ( 'Exec Summary'[action_2] ) & UNICHAR ( 10 )
+  & "3. " & MAX ( 'Exec Summary'[action_3] ),
+    'Exec Summary'[is_latest] = TRUE ()
+)
+
+AI Summary Month =
+"AI summary for " & FORMAT ( CALCULATE ( MAX ( 'Exec Summary'[period_month] ),
+                                         'Exec Summary'[is_latest] = TRUE () ), "MMMM yyyy" )
+
+// ---------- model quality (after validation) ----------
+LLM Accuracy = MAX ( 'Model Quality'[llm_accuracy] )
+
+LLM Accuracy Label =
+IF ( ISBLANK ( [LLM Accuracy] ), "Not validated yet",
+     "LLM tags match manual labels " & FORMAT ( [LLM Accuracy], "0%" )
+     & " of the time (" & MAX ( 'Model Quality'[labelled_reviews] ) & " reviews checked)" )

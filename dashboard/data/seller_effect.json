@@ -1,0 +1,34 @@
+{
+ "rows": [
+  {
+   "bad_review_band": "1. Low (<10% bad reviews)",
+   "seller_months": 2235,
+   "avg_next_month_change_pct": -5.2,
+   "median_next_month_change_pct": -25.7
+  },
+  {
+   "bad_review_band": "2. Medium (10-25%)",
+   "seller_months": 1892,
+   "avg_next_month_change_pct": -8.0,
+   "median_next_month_change_pct": -23.8
+  },
+  {
+   "bad_review_band": "3. High (25%+)",
+   "seller_months": 867,
+   "avg_next_month_change_pct": -13.5,
+   "median_next_month_change_pct": -33.7
+  }
+ ],
+ "meta": [
+  {
+   "label": "SQL (PostgreSQL 16, database complaint_cost)",
+   "value": "SELECT bad_review_band, seller_months, avg_next_month_change_pct, median_next_month_change_pct\nFROM mart.complaint_effect_on_sellers ORDER BY bad_review_band",
+   "type": "code",
+   "lang": "sql"
+  },
+  {
+   "label": "Input",
+   "value": "Olist Brazilian E-Commerce dataset (Kaggle), 9 CSV files"
+  }
+ ]
+}

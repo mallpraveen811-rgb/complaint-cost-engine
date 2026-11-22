@@ -1,0 +1,303 @@
+{
+ "rows": [
+  {
+   "complaint": "Damaged / defective",
+   "severity": "high",
+   "stars": 2,
+   "summary_english": "Arrived with buttons not working; customer can't reach the store to exchange it.",
+   "original_portuguese": "O produto chegou com os botões sem funcionar. Desde então venho tentando me comunicar com as lannister para trocar o produto, mas sem sucesso."
+  },
+  {
+   "complaint": "Late delivery",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Deliveries via the postal service are always very late; tracking not updated for days.",
+   "original_portuguese": "Sempre que alguma loja envia meus produtos pelos Correios, tenho problemas. Sempre atrasa muito, quando não extravia... Nesse caso específico o status não é atualizado desde 08/01"
+  },
+  {
+   "complaint": "Late delivery",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Two days past the promised date with no update from the company about the delay.",
+   "original_portuguese": "HOJE JÁ É 29/03/ A ENTREGA ESTAVA MARCADA PARA O DIA 27/03, E NÃO HOUVE NENHUM TIPO DE FEEDBACK POR PARTE EMPRESA SOBRE O ATRASO."
+  },
+  {
+   "complaint": "Late delivery",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Paid upfront; not delivered on time and no information after the deadline passed.",
+   "original_portuguese": "Paguei o produto a vista, não recebi no prazo estipulado e não me enviaram nenhuma informação apos vencimento do prazo de entrega."
+  },
+  {
+   "complaint": "Late delivery",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Not delivered on time so the customer cancelled the purchase.",
+   "original_portuguese": "não me entregou no prazo cancelei a compra."
+  },
+  {
+   "complaint": "Missing items / parts",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Ordered two items with one shipping fee; one item never arrived.",
+   "original_portuguese": "O vendendor so me vendeu um item. O outro não sei quem foi e não foi entregue. Erro do site comprei dois intem paguei um único frete. So olha na NF"
+  },
+  {
+   "complaint": "Missing items / parts",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Only one of four ordered items was delivered; customer wants the rest.",
+   "original_portuguese": "Entregaram apenas um produto dos quatro itens do pedido... Quero o restante do pedido... Cadê?"
+  },
+  {
+   "complaint": "Missing items / parts",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Bought three units but received only one.",
+   "original_portuguese": "Comprei 3 unidades só me foi entregue 01 unidade."
+  },
+  {
+   "complaint": "Missing items / parts",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Ordered two kits but the box had only one although the invoice listed two.",
+   "original_portuguese": "No anúncio feito no site cada kit contém um rolo fusor e um pressor, pedi dois e veio somente um na caixa, na nota fiscal estava marcada dois kits."
+  },
+  {
+   "complaint": "Not as described",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Product differs from the listing; return is hard and the site ignores complaints.",
+   "original_portuguese": "Produto diferente do anunciado. Muita dificuldade para devolver, o site nao entra em contato e nem responde minhas reclamações. Não recomendo!!!"
+  },
+  {
+   "complaint": "Not as described",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Customer says the product sent is counterfeit and has asked to return it.",
+   "original_portuguese": "Produto enviado é falaificado"
+  },
+  {
+   "complaint": "Not as described",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Product was a replica but was not labelled as one.",
+   "original_portuguese": "Produto não informado como paralelo/réplica"
+  },
+  {
+   "complaint": "Not as described",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Everything arrived different from the listing and ugly; customer wants to return it.",
+   "original_portuguese": "Quero devolver porque veio tudo diferente e muito feio para criança"
+  },
+  {
+   "complaint": "Not delivered",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Customer asks whether the product will ever arrive.",
+   "original_portuguese": "O produto ainda vai chegar?"
+  },
+  {
+   "complaint": "Not delivered",
+   "severity": "high",
+   "stars": 3,
+   "summary_english": "Parcel stolen at the post office and the store did not send a replacement.",
+   "original_portuguese": "O produto foi roubado no dia 24/04/18 no correio e a loja não se prontificou em enviar um novo."
+  },
+  {
+   "complaint": "Not delivered",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Parcel lost between Curitiba and Rio; no explanation from the store.",
+   "original_portuguese": "Não sei onde o produto se perdeu, mas saiu de Curitiba e não chegou no Rio. Nenhuma satisfação"
+  },
+  {
+   "complaint": "Not delivered",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Product not delivered and no reply after complaining about the delay.",
+   "original_portuguese": "O produto não foi entregue, nem me deram satisfação após a reclamação da demora."
+  },
+  {
+   "complaint": "Other",
+   "severity": "medium",
+   "stars": 3,
+   "summary_english": "Wants the shipping fee refunded because the parcel had to be collected at the post office.",
+   "original_portuguese": "E quero o meu dinheiro do frete de volta, você paga o frete e tem que buscar no correio perdendo tempo e dinheiro se não vai entregar por que cobra frete eu vou ao procon."
+  },
+  {
+   "complaint": "Other",
+   "severity": "medium",
+   "stars": 1,
+   "summary_english": "Pays high shipping but parcels are not delivered to the door; must collect at the post office.",
+   "original_portuguese": "Segunda compra que faço através do app e pago um frete absurdo para o produto não ser entregue em casa. Comecei a fazer compras online pela comodidade de receber em casa e tenho que retirar nos correi"
+  },
+  {
+   "complaint": "Other",
+   "severity": "medium",
+   "stars": 1,
+   "summary_english": "Shipped by post instead of courier; customer had to cross the city to collect it.",
+   "original_portuguese": "Comprei na stark achando que seria entregue via transportadora, é me enviaram por correio, e não tem correio onde moro tive que atravessar a cidade pra buscar no correio e voltar de ônibus"
+  },
+  {
+   "complaint": "Other",
+   "severity": "medium",
+   "stars": 4,
+   "summary_english": "Paid shipping but had to travel to the post office to collect; product could be firmer.",
+   "original_portuguese": "Ele deveria ser um pouco mais firme. Quando pagamos frete esperamos receber em casa. Para ir a agência do Correios precisei pegar 2 lotações e metrô (tanto na ida como na volta). Não é certo"
+  },
+  {
+   "complaint": "Poor quality",
+   "severity": "high",
+   "stars": 4,
+   "summary_english": "Bath towel quality is so poor the customer will use it as a floor cloth.",
+   "original_portuguese": "o produto é horrível, vou usar como-pano de chão . Porque o que mandaram não dá pra dizer que é toalha de banho."
+  },
+  {
+   "complaint": "Poor quality",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Not worth it; product far below expectations.",
+   "original_portuguese": "Não vale a pena, produto muito aquém do esperado"
+  },
+  {
+   "complaint": "Poor quality",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Watch is fragile: the time-setting pin keeps falling out and it runs slow.",
+   "original_portuguese": "A Lojas Americana sempre é perfeita, porém, o produto é muito frágil e o pino de ajuste de hora cai sempre, além disso, o horário do relógio atrasa."
+  },
+  {
+   "complaint": "Poor quality",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Battery arrived expired and useless.",
+   "original_portuguese": "pilha vencida, velha e inutil"
+  },
+  {
+   "complaint": "Price / freight value",
+   "severity": "low",
+   "stars": 4,
+   "summary_english": "Recommends it but thinks it should be cheaper.",
+   "original_portuguese": "Deveria ser mais barato!"
+  },
+  {
+   "complaint": "Price / freight value",
+   "severity": "low",
+   "stars": 5,
+   "summary_english": "Very good product but a bit expensive.",
+   "original_portuguese": "Muito bom o produto, só achei um pouco caro!"
+  },
+  {
+   "complaint": "Price / freight value",
+   "severity": "low",
+   "stars": 3,
+   "summary_english": "Nice watch but the shipping was expensive.",
+   "original_portuguese": "O relógio é muito bonito. Porém, achei o frete caro."
+  },
+  {
+   "complaint": "Price / freight value",
+   "severity": "medium",
+   "stars": 2,
+   "summary_english": "Charged separate shipping within one site; customer does not plan to buy there again.",
+   "original_portuguese": "Pagar frete comprando tudo através de um único site é simplesmente horrível. Eu sei que está é outra loja, porém não pretendo voltar a comprar na lannister.com"
+  },
+  {
+   "complaint": "Refund / return issue",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Tried to cancel before invoicing; no answer and now cannot return the item.",
+   "original_portuguese": "Tentando cancelar o produto desde antes da emissão da nota fiscal. Não fui avisada que estava no correio, não tive nenhuma resposta do cancelamento e nao consigo devolver."
+  },
+  {
+   "complaint": "Refund / return issue",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Purchase went through although out of stock; very hard to get the money back.",
+   "original_portuguese": "Permitiu concluir a compra, mas não tinha o produto em estoque. Maior canseira para receber o dinheiro de volta."
+  },
+  {
+   "complaint": "Refund / return issue",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Store cannot deliver but will not refund; customer threatens legal action.",
+   "original_portuguese": "se vc não tem o produto pra me entregar por que vcs não devolvem o meu dinheiro.. ...vcs querem que eu entre na justiça aguardo uma posição da lannister"
+  },
+  {
+   "complaint": "Refund / return issue",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Fourth request to return a bag whose size differs from the listing; no response.",
+   "original_portuguese": "BOM DIA, JÁ É A QUARTA VEZ QUE SOLICITO A DEVOLUÇÃO DO PRODUTO E ATÉ O MOMENTO NÃO TIVE RETORNO, POIS A MEDIDAS DA BOLSA NÃO SÃO AS MESMAS DECLARADAS NO ATO DA COMPRA. GT. KEYLA"
+  },
+  {
+   "complaint": "Seller unresponsive",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Store sold a product it did not have; customer would not recommend it.",
+   "original_portuguese": "Empresa ofereceu o produto e não tinha disponível. Muito transtorno. Não indico!"
+  },
+  {
+   "complaint": "Seller unresponsive",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Order cancelled after repeated unanswered calls; item later shown as unavailable.",
+   "original_portuguese": "Pedido cancelado por falta de atenção da empresa! Receberam e não enviaram a capa liguei varias vezes e sempre tinha que aguardar um retorno que nunca veio depois colocaram no site que não tinha mais!"
+  },
+  {
+   "complaint": "Seller unresponsive",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Confusing messages: store said it was delivered when it was not; arrived days later.",
+   "original_portuguese": "Mandam email informando problemas na entrega e solicitando cancelar ou não o pedido; ao tentar cancelar informam que o produto foi entrgue dia 12, não foi; entregam dia 18/05/2017"
+  },
+  {
+   "complaint": "Seller unresponsive",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Item listed as in stock; after 25 days the store said it was unavailable.",
+   "original_portuguese": "a empresa deixou disponível a venda como se tivesse em estoque depois de 25 dias me falaram que não tinha a camisa."
+  },
+  {
+   "complaint": "Wrong item",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Ordered one model and received a different one.",
+   "original_portuguese": "Recebi o produto errado comprei um modelo e veio outro"
+  },
+  {
+   "complaint": "Wrong item",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Wrong product sent and no support for exchange or refund; customer will sue.",
+   "original_portuguese": "O produto veio errado não tive nenhum respaldo para troca ou devolução do dinheiro, infelizmente terei que entrar com uma ação judicial para resolver o meu problema"
+  },
+  {
+   "complaint": "Wrong item",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Store said item was out of stock, suggested another, then shipped a third model.",
+   "original_portuguese": "Comprei uma churrasqueira (5 unidades em estoque), após a compra aprovada, recebi contato da loja alegando fim de estoque e sugeriram outro modelo e mesmo assim enviaram um 3o modelo diferente."
+  },
+  {
+   "complaint": "Wrong item",
+   "severity": "high",
+   "stars": 1,
+   "summary_english": "Received the wrong products.",
+   "original_portuguese": "Meu produtos veio errado"
+  }
+ ],
+ "meta": [
+  {
+   "label": "SQL (PostgreSQL 16, database complaint_cost)",
+   "value": "SELECT cc.display_name AS complaint, t.severity, r.review_score AS stars, t.summary_en AS summary_english,\n       r.comment_text AS original_portuguese\nFROM ai.review_insights t\nJOIN (SELECT DISTINCT ON (review_id) review_id, review_score, comment_text FROM stg.reviews) r USING (review_id)\nJOIN ai.complaint_categories cc ON cc.category = t.primary_category\nWHERE t.summary_en <> '' ORDER BY cc.display_name, t.severity",
+   "type": "code",
+   "lang": "sql"
+  },
+  {
+   "label": "Input",
+   "value": "Olist Brazilian E-Commerce dataset (Kaggle), 9 CSV files"
+  }
+ ]
+}

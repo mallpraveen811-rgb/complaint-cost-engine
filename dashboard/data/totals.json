@@ -1,0 +1,30 @@
+{
+ "rows": [
+  {
+   "orders": 99441,
+   "customers": 96096,
+   "sellers": 3095,
+   "revenue_brl": 15843553,
+   "late_pct": 6.8,
+   "avg_review_score": 4.09,
+   "repeat_customer_pct": 3.1,
+   "reviews_with_text": 40766,
+   "reviews_tagged": 1196,
+   "coverage_factor": 33.972,
+   "first_order": "2016-09-04",
+   "last_order": "2018-10-17"
+  }
+ ],
+ "meta": [
+  {
+   "label": "SQL (PostgreSQL 16, database complaint_cost)",
+   "value": "SELECT (SELECT count(*) FROM dw.fact_orders) AS orders,\n       (SELECT count(DISTINCT customer_key) FROM dw.fact_orders) AS customers,\n       (SELECT count(*) FROM dw.dim_seller) AS sellers,\n       (SELECT round(sum(order_value)) FROM dw.fact_orders) AS revenue_brl,\n       (SELECT round(100.0*avg(is_late::int),1) FROM dw.fact_orders) AS late_pct,\n       (SELECT round(avg(review_score),2) FROM dw.fact_orders) AS avg_review_score,\n       (SELECT round(100.0*avg((n>1)::int),1) FROM (SELECT count(*) n FROM dw.fact_orders GROUP BY customer_key) x) AS repeat_customer_pct,\n       c.reviews_with_text, (SELECT count(*) FROM ai.review_insights) AS reviews_tagged, c.coverage_factor,\n       (SELECT min(order_date)::text FROM dw.fact_orders) AS first_order,\n       (SELECT max(order_date)::text FROM dw.fact_orders) AS last_order\nFROM mart.tagging_coverage c",
+   "type": "code",
+   "lang": "sql"
+  },
+  {
+   "label": "Input",
+   "value": "Olist Brazilian E-Commerce dataset (Kaggle), 9 CSV files"
+  }
+ ]
+}

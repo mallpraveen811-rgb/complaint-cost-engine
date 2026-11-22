@@ -1,0 +1,40 @@
+-- =====================================================================
+-- 01_raw_tables.sql  |  Landing tables that mirror the CSV files 1:1
+-- Everything is TEXT on purpose: loading never fails on a bad date or
+-- number. Types are fixed later, in staging, where we can see the errors.
+-- =====================================================================
+DROP TABLE IF EXISTS raw.customers, raw.orders, raw.order_items, raw.order_payments,
+  raw.order_reviews, raw.products, raw.sellers, raw.category_translation CASCADE;
+
+CREATE TABLE raw.customers (
+  customer_id text, customer_unique_id text, customer_zip_code_prefix text,
+  customer_city text, customer_state text);
+
+CREATE TABLE raw.orders (
+  order_id text, customer_id text, order_status text, order_purchase_timestamp text,
+  order_approved_at text, order_delivered_carrier_date text,
+  order_delivered_customer_date text, order_estimated_delivery_date text);
+
+CREATE TABLE raw.order_items (
+  order_id text, order_item_id text, product_id text, seller_id text,
+  shipping_limit_date text, price text, freight_value text);
+
+CREATE TABLE raw.order_payments (
+  order_id text, payment_sequential text, payment_type text,
+  payment_installments text, payment_value text);
+
+CREATE TABLE raw.order_reviews (
+  review_id text, order_id text, review_score text, review_comment_title text,
+  review_comment_message text, review_creation_date text, review_answer_timestamp text);
+
+-- note: "lenght" is misspelled in the original Kaggle file; we keep it in raw
+CREATE TABLE raw.products (
+  product_id text, product_category_name text, product_name_lenght text,
+  product_description_lenght text, product_photos_qty text, product_weight_g text,
+  product_length_cm text, product_height_cm text, product_width_cm text);
+
+CREATE TABLE raw.sellers (
+  seller_id text, seller_zip_code_prefix text, seller_city text, seller_state text);
+
+CREATE TABLE raw.category_translation (
+  product_category_name text, product_category_name_english text);

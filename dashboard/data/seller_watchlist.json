@@ -1,0 +1,136 @@
+{
+ "rows": [
+  {
+   "seller_id": "1ca7077d",
+   "seller_state": "SP",
+   "orders": 115,
+   "revenue_brl": 15107,
+   "avg_review_score": 2.33,
+   "late_pct": 16.7,
+   "bad_review_pct": 61.4,
+   "health_status": "Needs action"
+  },
+  {
+   "seller_id": "2eb70248",
+   "seller_state": "SP",
+   "orders": 201,
+   "revenue_brl": 45780,
+   "avg_review_score": 2.69,
+   "late_pct": 11.3,
+   "bad_review_pct": 50.3,
+   "health_status": "Needs action"
+  },
+  {
+   "seller_id": "54965bbe",
+   "seller_state": "PR",
+   "orders": 78,
+   "revenue_brl": 13531,
+   "avg_review_score": 3.0,
+   "late_pct": 30.1,
+   "bad_review_pct": 44.6,
+   "health_status": "Needs action"
+  },
+  {
+   "seller_id": "972d0f9c",
+   "seller_state": "SC",
+   "orders": 82,
+   "revenue_brl": 10616,
+   "avg_review_score": 3.03,
+   "late_pct": 11.3,
+   "bad_review_pct": 42.3,
+   "health_status": "Needs action"
+  },
+  {
+   "seller_id": "a49928bc",
+   "seller_state": "SP",
+   "orders": 98,
+   "revenue_brl": 10665,
+   "avg_review_score": 3.01,
+   "late_pct": 21.9,
+   "bad_review_pct": 40.8,
+   "health_status": "Needs action"
+  },
+  {
+   "seller_id": "bbad7e51",
+   "seller_state": "SP",
+   "orders": 67,
+   "revenue_brl": 5840,
+   "avg_review_score": 3.23,
+   "late_pct": 16.7,
+   "bad_review_pct": 39.4,
+   "health_status": "Needs action"
+  },
+  {
+   "seller_id": "6fd52c52",
+   "seller_state": "SP",
+   "orders": 67,
+   "revenue_brl": 8882,
+   "avg_review_score": 3.39,
+   "late_pct": 13.4,
+   "bad_review_pct": 36.4,
+   "health_status": "Needs action"
+  },
+  {
+   "seller_id": "8444e55c",
+   "seller_state": "MG",
+   "orders": 98,
+   "revenue_brl": 24950,
+   "avg_review_score": 3.28,
+   "late_pct": 6.6,
+   "bad_review_pct": 34.7,
+   "health_status": "Needs action"
+  },
+  {
+   "seller_id": "712e6ed8",
+   "seller_state": "SC",
+   "orders": 79,
+   "revenue_brl": 46704,
+   "avg_review_score": 3.38,
+   "late_pct": 20.8,
+   "bad_review_pct": 34.6,
+   "health_status": "Needs action"
+  },
+  {
+   "seller_id": "710e3548",
+   "seller_state": "PR",
+   "orders": 135,
+   "revenue_brl": 27823,
+   "avg_review_score": 3.38,
+   "late_pct": 3.8,
+   "bad_review_pct": 32.1,
+   "health_status": "Needs action"
+  },
+  {
+   "seller_id": "b2479f94",
+   "seller_state": "SP",
+   "orders": 101,
+   "revenue_brl": 7015,
+   "avg_review_score": 3.39,
+   "late_pct": 12.1,
+   "bad_review_pct": 32.0,
+   "health_status": "Needs action"
+  },
+  {
+   "seller_id": "18a349e7",
+   "seller_state": "SP",
+   "orders": 119,
+   "revenue_brl": 10729,
+   "avg_review_score": 3.48,
+   "late_pct": 5.6,
+   "bad_review_pct": 30.5,
+   "health_status": "Needs action"
+  }
+ ],
+ "meta": [
+  {
+   "label": "SQL (PostgreSQL 16, database complaint_cost)",
+   "value": "SELECT left(s.seller_key, 8) AS seller_id, s.seller_state, s.orders, round(s.revenue) AS revenue_brl, s.avg_review_score,\n       s.late_pct, round(100.0*b.bad,1) AS bad_review_pct, s.health_status\nFROM mart.seller_scorecard s\nJOIN (SELECT seller_key, avg((review_score<=2)::int) bad FROM dw.fact_orders GROUP BY 1) b USING (seller_key)\nWHERE s.orders >= 50 ORDER BY b.bad DESC LIMIT 12",
+   "type": "code",
+   "lang": "sql"
+  },
+  {
+   "label": "Input",
+   "value": "Olist Brazilian E-Commerce dataset (Kaggle), 9 CSV files"
+  }
+ ]
+}

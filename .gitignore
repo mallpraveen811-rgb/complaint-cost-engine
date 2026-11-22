@@ -1,0 +1,8 @@
+.env
+data/raw/*.csv
+data/work/
+data/_sample_truth.csv
+__pycache__/
+*.pyc
+# keep the .pbix out if it gets large; publish screenshots instead
+*.pbix

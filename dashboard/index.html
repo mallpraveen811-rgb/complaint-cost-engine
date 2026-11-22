@@ -1,0 +1,384 @@
+<meta name="dash-one-writer">
+<style>
+.cce{font-family:var(--font-anthropic-sans);color:var(--color-fg);display:flex;flex-direction:column;gap:var(--cds-gap-xl)}
+.cce h1{font-family:var(--font-anthropic-serif);font-weight:400;font-size:var(--cds-font-size-title);margin:0 0 var(--cds-gap-sm)}
+.cce h2{font-size:var(--cds-font-size-heading);font-weight:var(--cds-font-weight-medium);margin:0 0 var(--cds-gap-xs)}
+.cce p{margin:0 0 var(--cds-gap-sm);line-height:1.55;max-width:78ch}
+.cce .muted{color:var(--color-fg-muted);font-size:var(--cds-font-size-caption)}
+.cce .lead{font-size:var(--cds-font-size-heading);line-height:1.45}
+.cce b.num{font-variant-numeric:tabular-nums;font-weight:var(--cds-font-weight-medium)}
+.cce-card{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-lg)}
+.cce-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--cds-gap-md)}
+.cce-kpi .lbl{color:var(--color-fg-muted);font-size:var(--cds-font-size-caption)}
+.cce-kpi .val{font-family:var(--font-anthropic-serif);font-weight:400;font-size:28px;font-variant-numeric:tabular-nums;margin-top:4px;display:block}
+.cce-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:var(--cds-gap-lg)}
+.cce-chart{position:relative;min-height:120px;width:100%}
+.cce-chart svg{display:block;overflow:visible}
+.cce-chart text{fill:var(--cds-text-secondary);font-size:var(--cds-font-size-caption);font-family:var(--font-anthropic-sans)}
+.cce-chart text.cce-val{fill:var(--color-fg);font-variant-numeric:tabular-nums}
+.cce-chart .domain,.cce-chart .tick line{stroke:var(--cds-chart-grid)}
+.cce-tip{position:absolute;pointer-events:none;background:var(--cds-surface-popover);border:1px solid var(--cds-border);box-shadow:var(--cds-shadow-popover);border-radius:var(--cds-radius);padding:6px 9px;font-size:var(--cds-font-size-caption);line-height:1.45;z-index:5;max-width:240px}
+.cce-tip .t{font-weight:var(--cds-font-weight-medium);color:var(--color-fg)}
+.cce-tip .r{color:var(--cds-text-secondary)}
+.cce-tablewrap{overflow-x:auto}
+.cce table{border-collapse:collapse;width:100%;font-size:var(--cds-font-size-caption)}
+.cce th,.cce td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--color-border-line);white-space:nowrap}
+.cce th{color:var(--color-fg-muted);font-weight:var(--cds-font-weight-medium)}
+.cce td.n,.cce th.n{text-align:right;font-variant-numeric:tabular-nums}
+.cce-ai{border-left:3px solid var(--color-ok)}
+.cce-ai ol{margin:var(--cds-gap-sm) 0 0;padding-left:20px;line-height:1.55}
+.cce-badge{display:inline-block;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);border:1px solid var(--color-border-line);border-radius:999px;padding:1px 8px;margin-bottom:var(--cds-gap-sm)}
+.cce-quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--cds-gap-md);margin-top:var(--cds-gap-md)}
+.cce-quote .en{font-weight:var(--cds-font-weight-medium);margin-bottom:6px}
+.cce-quote .pt{color:var(--color-fg-muted);font-style:italic;font-size:var(--cds-font-size-caption)}
+.cce-quote .meta{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);margin-top:6px}
+.cce details summary{cursor:pointer;font-weight:var(--cds-font-weight-medium)}
+.cce details dl{display:grid;grid-template-columns:minmax(120px,max-content) 1fr;gap:6px 16px;margin-top:var(--cds-gap-sm)}
+.cce details dt{font-weight:var(--cds-font-weight-medium)}
+.cce details dd{margin:0}
+</style>
+
+<div class="cce">
+  <header id="intro">
+    <h1>Which customer problems cost the most?</h1>
+    <p class="muted">Complaint Cost Engine · analysis by Aarsh Mall · PostgreSQL, Python and an LLM</p>
+    <p class="lead" data-read lang="en"><span data-draw="top1" data-source="complaint_impact" data-field="display_name" data-row="0">—</span> is the costliest complaint, with an estimated <b class="num" data-draw="top1v" data-source="complaint_impact" data-field="est_revenue_at_risk" data-row="0">—</b> of revenue at risk, followed by <span data-draw="top2" data-source="complaint_impact" data-field="display_name" data-row="1">—</span> (<b class="num" data-draw="top2v" data-source="complaint_impact" data-field="est_revenue_at_risk" data-row="1">—</b>) and <span data-draw="top3" data-source="complaint_impact" data-field="display_name" data-row="2">—</span> (<b class="num" data-draw="top3v" data-source="complaint_impact" data-field="est_revenue_at_risk" data-row="2">—</b>).</p>
+    <p class="muted">Olist marketplace, Brazil. Orders from <span data-draw="first" data-source="totals" data-field="first_order" data-row="0">—</span> to <span data-draw="last" data-source="totals" data-field="last_order" data-row="0">—</span>. Complaint types come from an AI reading a random sample of <span data-draw="tagged2" data-source="totals" data-field="reviews_tagged" data-row="0">—</span> written reviews, scaled up to all <span data-draw="written2" data-source="totals" data-field="reviews_with_text" data-row="0">—</span>.</p>
+  </header>
+
+  <section id="kpis" class="cce-kpis">
+    <div class="cce-card cce-kpi"><div class="lbl">Orders</div><span class="val" data-draw="k-orders" data-source="totals" data-field="orders" data-row="0">—</span></div>
+    <div class="cce-card cce-kpi"><div class="lbl">Revenue (items + freight)</div><span class="val" data-draw="k-rev" data-source="totals" data-field="revenue_brl" data-row="0">—</span></div>
+    <div class="cce-card cce-kpi"><div class="lbl">Average review score (1–5)</div><span class="val" data-draw="k-score" data-source="totals" data-field="avg_review_score" data-row="0">—</span></div>
+    <div class="cce-card cce-kpi"><div class="lbl">Orders delivered late</div><span class="val" data-draw="k-late" data-source="totals" data-field="late_pct" data-row="0">—</span></div>
+    <div class="cce-card cce-kpi"><div class="lbl">Customers who bought twice</div><span class="val" data-draw="k-repeat" data-source="totals" data-field="repeat_customer_pct" data-row="0">—</span></div>
+    <div class="cce-card cce-kpi"><div class="lbl">Reviews read by the AI</div><span class="val" data-draw="k-tagged" data-source="totals" data-field="reviews_tagged" data-row="0">—</span></div>
+  </section>
+
+  <section id="ai-summary" class="cce-card cce-ai">
+    <span class="cce-badge">AI-written summary for <span data-draw="s-period" data-source="exec_summary" data-field="period" data-row="0">—</span> · every number checked against the data</span>
+    <h2 data-draw="s-head" data-source="exec_summary" data-field="headline" data-row="0">—</h2>
+    <p data-draw="s-body" data-source="exec_summary" data-field="summary" data-row="0">—</p>
+    <ol>
+      <li data-draw="s-a1" data-source="exec_summary" data-field="action_1" data-row="0">—</li>
+      <li data-draw="s-a2" data-source="exec_summary" data-field="action_2" data-row="0">—</li>
+      <li data-draw="s-a3" data-source="exec_summary" data-field="action_3" data-row="0">—</li>
+    </ol>
+  </section>
+
+  <section id="complaint-cost">
+    <h2>Revenue at risk by complaint type</h2>
+    <p class="muted">Estimated for all written reviews. Revenue at risk = value of complaint orders that are high-severity or where the customer says they won't buy again.</p>
+    <div class="cce-chart" id="chart-cost" data-draw="chart-cost" data-source="complaint_impact"></div>
+    <div class="cce-tablewrap" style="margin-top:var(--cds-gap-md)">
+      <table id="table-cost" data-source="complaint_impact" data-row-key="display_name">
+        <thead><tr><th data-field="fix_priority_rank" class="n">Fix first</th><th data-field="display_name">Complaint</th><th data-field="owner_team">Owner team</th><th data-field="complaints" class="n">Complaints in sample</th><th data-field="share_of_complaints_pct" class="n">Share of complaints</th><th data-field="avg_review_score" class="n">Avg stars</th><th data-field="high_severity_pct" class="n">High severity</th><th data-field="est_revenue_at_risk" class="n">Est. revenue at risk</th></tr></thead>
+        <tbody data-draw="tbody-cost"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="cce-grid">
+    <section id="delivery">
+      <h2>Ratings collapse once an order is late</h2>
+      <p data-read lang="en">Orders that arrived a week or more early average <b class="num" data-draw="d-early" data-source="delivery_vs_review" data-field="avg_review_score" data-row="0">—</b> stars. Orders 15+ days late average <b class="num" data-draw="d-late" data-source="delivery_vs_review" data-field="avg_review_score" data-row="5">—</b>, and <b class="num" data-draw="d-latebad" data-source="delivery_vs_review" data-field="bad_review_pct" data-row="5">—</b> of them get a 1–2 star review.</p>
+      <div class="cce-chart" id="chart-delivery" data-draw="chart-delivery" data-source="delivery_vs_review"></div>
+      <p class="muted">Average review score by how late the order arrived against the promised date. All delivered orders, no AI involved.</p>
+    </section>
+
+    <section id="missing-items">
+      <h2>"Missing items" are mostly split shipments</h2>
+      <p data-read lang="en"><b class="num" data-draw="m-multi" data-source="missing_items" data-field="multi_item_pct" data-row="0">—</b> of orders with a missing-items complaint had more than one item, against <b class="num" data-draw="m-multiall" data-source="missing_items" data-field="multi_item_pct" data-row="1">—</b> of all orders. <b class="num" data-draw="m-seller" data-source="missing_items" data-field="multi_seller_pct" data-row="0">—</b> came from more than one seller, against <b class="num" data-draw="m-sellerall" data-source="missing_items" data-field="multi_seller_pct" data-row="1">—</b>. Items often ship separately, and customers think the rest is lost.</p>
+      <div class="cce-chart" id="chart-missing" data-draw="chart-missing" data-source="missing_items"></div>
+      <p class="muted">Share of orders with more than one item.</p>
+    </section>
+  </div>
+
+  <section id="seller-effect">
+    <h2>Sellers with many bad reviews sell less the next month</h2>
+    <p data-read lang="en">After a month with 25%+ bad reviews, a seller's sales changed by <b class="num" data-draw="e-high" data-source="seller_effect" data-field="avg_next_month_change_pct" data-row="2">—</b> on average the next month, against <b class="num" data-draw="e-low" data-source="seller_effect" data-field="avg_next_month_change_pct" data-row="0">—</b> after a month under 10%. Sales swing a lot month to month, so compare the bands rather than the signs. This shows a link, not proof that one causes the other.</p>
+    <div class="cce-chart" id="chart-effect" data-draw="chart-effect" data-source="seller_effect"></div>
+    <p class="muted">Average change in a seller's revenue the following month, by that month's share of 1–2 star reviews. Seller-months with at least 5 reviewed orders.</p>
+  </section>
+
+  <div class="cce-grid">
+    <section id="trend-revenue">
+      <h2>Monthly revenue</h2>
+      <div class="cce-chart" id="chart-revenue" data-draw="chart-revenue" data-source="monthly"></div>
+      <p class="muted">Jan 2017 to Aug 2018 (earlier and later months have only a handful of orders).</p>
+    </section>
+    <section id="trend-late">
+      <h2>Share of orders delivered late, by month</h2>
+      <div class="cce-chart" id="chart-late" data-draw="chart-late" data-source="monthly"></div>
+      <p class="muted">Spikes in Nov 2017 (Black Friday) and Feb–Mar 2018.</p>
+    </section>
+  </div>
+
+  <section id="states">
+    <h2>Where deliveries run late</h2>
+    <p class="muted">By customer state, latest first. Scroll sideways on a small screen.</p>
+    <div class="cce-tablewrap" style="max-height:340px;overflow-y:auto">
+      <table id="table-states" data-source="states" data-row-key="state">
+        <thead><tr><th data-field="state">State</th><th data-field="state_name">Name</th><th data-field="region">Region</th><th data-field="orders" class="n">Orders</th><th data-field="avg_delivery_days" class="n">Avg days to deliver</th><th data-field="late_pct" class="n">Late</th><th data-field="avg_review_score" class="n">Avg stars</th></tr></thead>
+        <tbody data-draw="tbody-states"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="sellers">
+    <h2>Sellers to call first</h2>
+    <p class="muted">Sellers with 50+ orders and the highest share of 1–2 star reviews. IDs shortened.</p>
+    <div class="cce-tablewrap">
+      <table id="table-sellers" data-source="seller_watchlist" data-row-key="seller_id">
+        <thead><tr><th data-field="seller_id">Seller</th><th data-field="seller_state">State</th><th data-field="orders" class="n">Orders</th><th data-field="revenue_brl" class="n">Revenue</th><th data-field="avg_review_score" class="n">Avg stars</th><th data-field="late_pct" class="n">Late</th><th data-field="bad_review_pct" class="n">1–2 star reviews</th></tr></thead>
+        <tbody data-draw="tbody-sellers"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="trust-ai">
+    <h2>Can the AI's tags be trusted?</h2>
+    <p data-read lang="en">The order timestamps act as an independent check. Of reviews the AI tagged "Late delivery", <b class="num" data-draw="v-late" data-source="validation" data-field="actually_late_or_undelivered_pct" data-row="0">—</b> really were late or undelivered, against <b class="num" data-draw="v-base" data-source="validation" data-field="actually_late_or_undelivered_pct" data-row="3">—</b> of all orders. Simple keyword rules agreed with the AI on only <b class="num" data-draw="v-kw" data-source="keyword_vs_ai" data-field="keyword_rules" data-row="1">—</b> of reviews, and called <b class="num" data-draw="v-kwlate" data-source="keyword_vs_ai" data-field="keyword_rules" data-row="3">—</b> of happy reviews "late" because they mention the deadline.</p>
+    <div class="cce-grid">
+      <div class="cce-tablewrap">
+        <table id="table-validation" data-source="validation" data-row-key="ai_tag">
+          <thead><tr><th data-field="ai_tag">Group</th><th data-field="reviews" class="n">Orders</th><th data-field="actually_late_or_undelivered_pct" class="n">Late or undelivered (timestamps)</th></tr></thead>
+          <tbody data-draw="tbody-validation"></tbody>
+        </table>
+      </div>
+      <div class="cce-tablewrap">
+        <table id="table-keyword" data-source="keyword_vs_ai" data-row-key="measure">
+          <thead><tr><th data-field="measure">Measure</th><th data-field="ai" class="n">AI</th><th data-field="keyword_rules" class="n">Keyword rules</th></tr></thead>
+          <tbody data-draw="tbody-keyword"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="customers">
+    <h2>What customers actually wrote</h2>
+    <p class="muted">Real reviews, translated and summarised by the AI. Pick a complaint type.</p>
+    <select class="dash-select" data-draw="pick-complaint" aria-label="Complaint type" data-source="review_examples"></select>
+    <div class="cce-quotes" data-draw="quotes" data-source="review_examples"></div>
+  </section>
+
+  <details id="method">
+    <summary>How this was built, and definitions</summary>
+    <dl>
+      <dt>Data</dt><dd>Olist Brazilian E-Commerce dataset (Kaggle): 9 linked tables loaded into PostgreSQL, cleaned, and modelled as a star schema.</dd>
+      <dt>AI step</dt><dd>An LLM (Claude) read a random sample of written Portuguese reviews and gave each one complaint type (from a fixed list of 12), a severity, a sentiment and a "won't buy again" flag.</dd>
+      <dt>Complaint order</dt><dd>An order whose review the AI tagged with a complaint type.</dd>
+      <dt>Revenue at risk</dt><dd>Value of complaint orders where the problem is high-severity or the customer says they won't buy again. It is an estimate of exposure, not a measured loss.</dd>
+      <dt>Scaling</dt><dd>Sample totals are multiplied by written reviews ÷ tagged reviews to estimate the total for all written reviews. With roughly 10–90 complaints per type in the sample, treat the ranking as more reliable than the exact amounts.</dd>
+      <dt>Late</dt><dd>Delivered after the date the store promised at purchase.</dd>
+      <dt>Summary</dt><dd>Written by the LLM from that month's KPI numbers only; a script checked that every number in it appears in the data.</dd>
+    </dl>
+  </details>
+</div>
+
+<script>
+(function () {
+  const f = {
+    int: d3.format(','),
+    brl: (v) => 'R$ ' + d3.format(',.0f')(v),
+    pct: (v) => d3.format('.1f')(v) + '%',
+    spct: (v) => (v > 0 ? '+' : '') + d3.format('.1f')(v) + '%',
+    dec2: (v) => d3.format('.2f')(v),
+    dec1: (v) => d3.format('.1f')(v),
+    date: (s) => d3.utcFormat('%b %-d, %Y')(new Date(s + 'T00:00:00Z')),
+  };
+  window.cce = { f };
+
+  cce.val = (name, id, row, field, fmt) => dash.draw(name, (el) => {
+    const d = dash.data(id);
+    if (d.status !== 'ok' || !d.data[row] || d.data[row][field] == null) { el.textContent = '—'; return; }
+    const v = d.data[row][field];
+    el.textContent = fmt ? fmt(v) : String(v);
+  });
+
+  cce.failed = (el, d, what) => {
+    if (d.status === 'error') { el.replaceChildren(); const p = document.createElement('p'); p.className = 'muted'; p.textContent = 'Could not load ' + what + '.'; el.append(p); return true; }
+    if (d.status !== 'ok') { el.replaceChildren(); return true; }
+    return false;
+  };
+
+  cce.tip = (el) => {
+    const t = document.createElement('div'); t.className = 'cce-tip'; t.hidden = true; el.append(t);
+    return {
+      show(ev, title, lines) {
+        t.replaceChildren();
+        const h = document.createElement('div'); h.className = 't'; h.textContent = title; t.append(h);
+        lines.forEach((l) => { const r = document.createElement('div'); r.className = 'r'; r.textContent = l; t.append(r); });
+        t.hidden = false;
+        const box = el.getBoundingClientRect();
+        let x = ev.clientX - box.left + 12, y = ev.clientY - box.top + 12;
+        if (x + t.offsetWidth > box.width) x = Math.max(0, ev.clientX - box.left - t.offsetWidth - 12);
+        t.style.left = x + 'px'; t.style.top = y + 'px';
+      },
+      hide() { t.hidden = true; },
+    };
+  };
+
+  cce.hbar = (el, rows, o) => {
+    el.replaceChildren();
+    const W = Math.max(280, el.clientWidth || 600), rowH = o.rowH || 30;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${rows.length * rowH + 4}`)
+      .attr('role', 'img').attr('aria-label', o.aria);
+    const probe = svg.append('g');
+    let lw = 0, vw = 0;
+    rows.forEach((r) => {
+      lw = Math.max(lw, probe.append('text').text(r[o.label]).node().getComputedTextLength());
+      vw = Math.max(vw, probe.append('text').attr('class', 'cce-val').text(o.fmt(r[o.value])).node().getComputedTextLength());
+    });
+    probe.remove();
+    lw = Math.min(lw + 10, W * 0.42); vw += 10;
+    const vals = rows.map((r) => +r[o.value]);
+    const lo = Math.min(0, d3.min(vals)), hi = Math.max(0, d3.max(vals));
+    const x = d3.scaleLinear().domain([lo, hi]).range([lw + (lo < 0 ? vw : 0), W - (hi > 0 ? vw : 0)]);
+    const tip = cce.tip(el);
+    const g = svg.selectAll('g.row').data(rows).join('g').attr('class', 'row').attr('transform', (r, i) => `translate(0,${i * rowH})`);
+    g.append('text').attr('x', lw - 10).attr('y', rowH / 2).attr('dy', '0.35em').attr('text-anchor', 'end').text((r) => r[o.label]);
+    g.append('rect').attr('x', (r) => Math.min(x(r[o.value]), x(0))).attr('y', 6).attr('height', rowH - 12)
+      .attr('width', (r) => Math.max(1, Math.abs(x(r[o.value]) - x(0)))).attr('rx', 3)
+      .style('fill', dash.colors[0]);
+    g.append('text').attr('class', 'cce-val').attr('y', rowH / 2).attr('dy', '0.35em')
+      .attr('x', (r) => (r[o.value] < 0 ? x(r[o.value]) - 6 : x(r[o.value]) + 6))
+      .attr('text-anchor', (r) => (r[o.value] < 0 ? 'end' : 'start')).text((r) => o.fmt(r[o.value]));
+    if (lo < 0) svg.append('line').attr('x1', x(0)).attr('x2', x(0)).attr('y1', 0).attr('y2', rows.length * rowH).style('stroke', 'var(--cds-chart-reference)');
+    g.append('rect').attr('x', 0).attr('y', 0).attr('width', W).attr('height', rowH).style('fill', 'transparent')
+      .on('mousemove', (ev, r) => tip.show(ev, r[o.label], o.tip(r))).on('mouseleave', () => tip.hide());
+  };
+
+  cce.line = (el, rows, o) => {
+    el.replaceChildren();
+    const W = Math.max(280, el.clientWidth || 600), H = 200, m = { t: 10, r: 14, b: 26, l: 10 };
+    const pts = rows.map((r) => ({ x: new Date(r[o.x] + 'T00:00:00Z'), y: +r[o.y], r }));
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', o.aria);
+    const y = d3.scaleLinear().domain([0, d3.max(pts, (p) => p.y) * 1.1]).nice().range([H - m.b, m.t]);
+    const probe = svg.append('text').text(o.tick(y.domain()[1])); m.l = probe.node().getComputedTextLength() + 10; probe.remove();
+    const x = d3.scaleUtc().domain(d3.extent(pts, (p) => p.x)).range([m.l, W - m.r]);
+    svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(Math.max(2, Math.floor(W / 110))).tickFormat(d3.utcFormat('%b %y')).tickSizeOuter(0));
+    svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(4).tickFormat(o.tick).tickSize(-(W - m.l - m.r))).call((g) => g.select('.domain').remove()).call((g) => g.selectAll('.tick line').style('stroke', 'var(--cds-chart-grid)'));
+    svg.append('path').datum(pts).attr('d', d3.line().x((p) => x(p.x)).y((p) => y(p.y))).style('fill', 'none').style('stroke', dash.colors[0]).style('stroke-width', 2);
+    svg.selectAll('circle.pt').data(pts).join('circle').attr('class', 'pt').attr('cx', (p) => x(p.x)).attr('cy', (p) => y(p.y)).attr('r', 3).style('fill', dash.colors[0]);
+    const tip = cce.tip(el);
+    const dot = svg.append('circle').attr('r', 5).style('fill', 'none').style('stroke', dash.colors[0]).style('stroke-width', 2).attr('visibility', 'hidden');
+    svg.append('rect').attr('x', m.l).attr('y', 0).attr('width', W - m.l - m.r).attr('height', H - m.b).style('fill', 'transparent')
+      .on('mousemove', (ev) => {
+        const [mx] = d3.pointer(ev); const t = x.invert(mx);
+        const p = pts[d3.leastIndex(pts, (q) => Math.abs(q.x - t))];
+        dot.attr('cx', x(p.x)).attr('cy', y(p.y)).attr('visibility', 'visible');
+        tip.show(ev, d3.utcFormat('%B %Y')(p.x), o.tip(p.r));
+      })
+      .on('mouseleave', () => { tip.hide(); dot.attr('visibility', 'hidden'); });
+  };
+
+  cce.tbody = (name, id, cols) => dash.draw(name, (tb) => {
+    const d = dash.data(id);
+    tb.replaceChildren();
+    if (d.status === 'error') { const tr = tb.insertRow(); const td = tr.insertCell(); td.colSpan = cols.length; td.textContent = 'Could not load this table.'; return; }
+    if (d.status !== 'ok') return;
+    d.data.forEach((r) => {
+      const tr = tb.insertRow();
+      cols.forEach(([field, fmt, num]) => { const td = tr.insertCell(); td.textContent = r[field] == null ? '—' : (fmt ? fmt(r[field]) : String(r[field])); if (num) td.className = 'n'; });
+    });
+  });
+})();
+</script>
+
+<script>
+(function () {
+  const f = cce.f;
+  cce.val('top1', 'complaint_impact', 0, 'display_name');
+  cce.val('top2', 'complaint_impact', 1, 'display_name', (v) => v.toLowerCase());
+  cce.val('top3', 'complaint_impact', 2, 'display_name', (v) => v.toLowerCase());
+  cce.val('top1v', 'complaint_impact', 0, 'est_revenue_at_risk', f.brl);
+  cce.val('top2v', 'complaint_impact', 1, 'est_revenue_at_risk', f.brl);
+  cce.val('top3v', 'complaint_impact', 2, 'est_revenue_at_risk', f.brl);
+  cce.val('first', 'totals', 0, 'first_order', f.date);
+  cce.val('last', 'totals', 0, 'last_order', f.date);
+  cce.val('tagged2', 'totals', 0, 'reviews_tagged', f.int);
+  cce.val('written2', 'totals', 0, 'reviews_with_text', f.int);
+  cce.val('k-orders', 'totals', 0, 'orders', f.int);
+  cce.val('k-rev', 'totals', 0, 'revenue_brl', f.brl);
+  cce.val('k-score', 'totals', 0, 'avg_review_score', f.dec2);
+  cce.val('k-late', 'totals', 0, 'late_pct', f.pct);
+  cce.val('k-repeat', 'totals', 0, 'repeat_customer_pct', f.pct);
+  cce.val('k-tagged', 'totals', 0, 'reviews_tagged', f.int);
+  ['period', 'headline', 'summary', 'action_1', 'action_2', 'action_3'].forEach((k, i) =>
+    cce.val(['s-period', 's-head', 's-body', 's-a1', 's-a2', 's-a3'][i], 'exec_summary', 0, k));
+  cce.val('d-early', 'delivery_vs_review', 0, 'avg_review_score', f.dec2);
+  cce.val('d-late', 'delivery_vs_review', 5, 'avg_review_score', f.dec2);
+  cce.val('d-latebad', 'delivery_vs_review', 5, 'bad_review_pct', f.pct);
+  cce.val('m-multi', 'missing_items', 0, 'multi_item_pct', f.pct);
+  cce.val('m-multiall', 'missing_items', 1, 'multi_item_pct', f.pct);
+  cce.val('m-seller', 'missing_items', 0, 'multi_seller_pct', f.pct);
+  cce.val('m-sellerall', 'missing_items', 1, 'multi_seller_pct', f.pct);
+  cce.val('e-high', 'seller_effect', 2, 'avg_next_month_change_pct', f.spct);
+  cce.val('e-low', 'seller_effect', 0, 'avg_next_month_change_pct', f.spct);
+  cce.val('v-late', 'validation', 0, 'actually_late_or_undelivered_pct', f.pct);
+  cce.val('v-base', 'validation', 3, 'actually_late_or_undelivered_pct', f.pct);
+  cce.val('v-kw', 'keyword_vs_ai', 1, 'keyword_rules', f.pct);
+  cce.val('v-kwlate', 'keyword_vs_ai', 3, 'keyword_rules', f.pct);
+
+  dash.draw('chart-cost', (el) => {
+    const d = dash.data('complaint_impact'); if (cce.failed(el, d, 'the complaint chart')) return;
+    cce.hbar(el, d.data, { label: 'display_name', value: 'est_revenue_at_risk', fmt: f.brl, aria: 'Bar chart of estimated revenue at risk by complaint type',
+      tip: (r) => [`Est. revenue at risk: ${f.brl(r.est_revenue_at_risk)}`, `Complaints in sample: ${r.complaints} (${f.pct(r.share_of_complaints_pct)})`, `Avg stars: ${f.dec2(r.avg_review_score)}`, `High severity: ${f.pct(r.high_severity_pct)}`, `Owner: ${r.owner_team}`] });
+  });
+  dash.draw('chart-delivery', (el) => {
+    const d = dash.data('delivery_vs_review'); if (cce.failed(el, d, 'the delivery chart')) return;
+    cce.hbar(el, d.data, { label: 'delay_bucket', value: 'avg_review_score', fmt: f.dec2, aria: 'Bar chart of average review score by delivery delay',
+      tip: (r) => [`Avg stars: ${f.dec2(r.avg_review_score)}`, `1–2 star reviews: ${f.pct(r.bad_review_pct)}`, `Orders: ${f.int(r.orders)}`] });
+  });
+  dash.draw('chart-missing', (el) => {
+    const d = dash.data('missing_items'); if (cce.failed(el, d, 'the missing-items chart')) return;
+    cce.hbar(el, d.data, { label: 'order_group', value: 'multi_item_pct', fmt: f.pct, aria: 'Bar chart comparing the share of multi-item orders',
+      tip: (r) => [`More than one item: ${f.pct(r.multi_item_pct)}`, `More than one seller: ${f.pct(r.multi_seller_pct)}`] });
+  });
+  dash.draw('chart-effect', (el) => {
+    const d = dash.data('seller_effect'); if (cce.failed(el, d, 'the seller chart')) return;
+    cce.hbar(el, d.data, { label: 'bad_review_band', value: 'avg_next_month_change_pct', fmt: f.spct, aria: 'Bar chart of next-month sales change by bad-review band',
+      tip: (r) => [`Average change: ${f.spct(r.avg_next_month_change_pct)}`, `Median change: ${f.spct(r.median_next_month_change_pct)}`, `Seller-months: ${f.int(r.seller_months)}`] });
+  });
+  dash.draw('chart-revenue', (el) => {
+    const d = dash.data('monthly'); if (cce.failed(el, d, 'the revenue chart')) return;
+    cce.line(el, d.data, { x: 'month', y: 'revenue_brl', aria: 'Line chart of monthly revenue', tick: (v) => 'R$ ' + d3.format('~s')(v),
+      tip: (r) => [`Revenue: ${f.brl(r.revenue_brl)}`, `Orders: ${f.int(r.orders)}`] });
+  });
+  dash.draw('chart-late', (el) => {
+    const d = dash.data('monthly'); if (cce.failed(el, d, 'the late-delivery chart')) return;
+    cce.line(el, d.data, { x: 'month', y: 'late_pct', aria: 'Line chart of the monthly share of late orders', tick: (v) => d3.format('~f')(v) + '%',
+      tip: (r) => [`Late: ${f.pct(r.late_pct)}`, `Avg stars: ${f.dec2(r.avg_review_score)}`] });
+  });
+
+  cce.tbody('tbody-cost', 'complaint_impact', [['fix_priority_rank', null, 1], ['display_name'], ['owner_team'], ['complaints', f.int, 1], ['share_of_complaints_pct', f.pct, 1], ['avg_review_score', f.dec2, 1], ['high_severity_pct', f.pct, 1], ['est_revenue_at_risk', f.brl, 1]]);
+  cce.tbody('tbody-states', 'states', [['state'], ['state_name'], ['region'], ['orders', f.int, 1], ['avg_delivery_days', f.dec1, 1], ['late_pct', f.pct, 1], ['avg_review_score', f.dec2, 1]]);
+  cce.tbody('tbody-sellers', 'seller_watchlist', [['seller_id'], ['seller_state'], ['orders', f.int, 1], ['revenue_brl', f.brl, 1], ['avg_review_score', f.dec2, 1], ['late_pct', f.pct, 1], ['bad_review_pct', f.pct, 1]]);
+  cce.tbody('tbody-validation', 'validation', [['ai_tag'], ['reviews', f.int, 1], ['actually_late_or_undelivered_pct', f.pct, 1]]);
+  cce.tbody('tbody-keyword', 'keyword_vs_ai', [['measure'], ['ai', (v) => (v > 100 ? f.int(v) : f.dec1(v)), 1], ['keyword_rules', (v) => (v > 100 ? f.int(v) : f.dec1(v)), 1]]);
+
+  let pick = null;
+  dash.draw('pick-complaint', (sel) => {
+    const d = dash.data('review_examples');
+    const kinds = d.status === 'ok' ? [...new Set(d.data.map((r) => r.complaint))] : [];
+    if (!pick || !kinds.includes(pick)) pick = kinds.includes('Not delivered') ? 'Not delivered' : kinds[0] || null;
+    sel.replaceChildren(...kinds.map((k) => new Option(k, k)));
+    sel.value = pick || '';
+    sel.onchange = () => { pick = sel.value; dash.draw('quotes'); };
+  });
+  dash.draw('quotes', (el) => {
+    const d = dash.data('review_examples');
+    el.replaceChildren();
+    if (d.status === 'error') { const p = document.createElement('p'); p.className = 'muted'; p.textContent = 'Could not load the reviews.'; el.append(p); return; }
+    if (d.status !== 'ok') return;
+    d.data.filter((r) => r.complaint === pick).forEach((r) => {
+      const c = document.createElement('div'); c.className = 'cce-card cce-quote';
+      const en = document.createElement('div'); en.className = 'en'; en.textContent = r.summary_english;
+      const pt = document.createElement('div'); pt.className = 'pt'; pt.lang = 'pt-BR'; pt.textContent = '“' + r.original_portuguese + '”';
+      const meta = document.createElement('div'); meta.className = 'meta'; meta.textContent = `${r.stars}★ · severity: ${r.severity}`;
+      c.append(en, pt, meta); el.append(c);
+    });
+  });
+})();
+</script>
